@@ -1,0 +1,73 @@
+1. create table employee(eno int, empname char(30),salary int,city char(20));
+
+2. insert into employee values(101,'Mark',120000,'Delhi');
+3. insert into employee values(102,'Mina',132100,'Pune');
+4. insert into employee values(103,'Ved',50000,'Mumbai');
+
+5. insert into employee values(104,'Mitali',80000,'Delhi');
+6. insert into employee values(105,'Vaishali',130000,'Mumbai');
+7. insert into employee values(106,'Sampark',100000,'Chandigarh');
+
+8. insert into employee values(107,'Rohit',90000,'Delhi');
+9. insert into employee values(108,'Ria',220000,'Pune');
+set linesize 150;
+
+10. select *from employee;
+11. select salary from employee;
+12. select salary,city from employee;
+
+13. select *from employee where city='Delhi';
+14. select *from employee where city in('Pune','Mumbai');
+15. select *from employee where city not in('Pune','Mumbai');
+
+16. select *from employee where salary between 100000 and 200000;
+17. select *from employee where(city='Delhi' or city='Pune');
+18. select *from employee where(city='Delhi' and salary='80000');
+
+19. select *from employee where trim(empname) like '%rk';
+20. select *from employee where trim(empname) like 'M%';
+21. select *from employee where trim(empname) like 'a%';
+
+22. select *from employee where trim(empname) like '_a';
+23. select *from employee where trim(empname) like '___';
+24. select *from employee where trim(empname) like '___%';
+25. select *from employee where trim(empname) like 'R__%';
+
+26. select sum(salary) from employee group by city;
+27. update employee set empname='Madhav' where eno=104;
+
+
+28. delete from employee where eno=103;
+
+
+29. select avg(salary),max(salary),min(salary),sum(salary) from employees where job_id like '%REP';
+30. select min(hire_date),max(hire_date) from employees;
+
+31. select count(*)from employees where department_id=50;
+32. select count(commission_pct) from employees where department_id=80;
+
+33. select count(DISTINCT department_id) from employees;
+34. select department_id, AVG(salary) from employees group by department_id;
+
+35. select AVG(Salary) from employees group by department_id;
+36. select department_id,job_id,SUM(Salary) from employees where department_id>40 group by department_id,job_id order by department_id;
+
+37. select department_id,MAX(Salary) from employees group by department_id HAVING MAX(Salary)>10000;
+38. select job_id,SUM(Salary) PAYROLL from employees where job_id not like '%REP' group by job_id having SUM(Salary)>13000 order by SUM(Salary);
+
+39. select MAX(AVG(Salary)) from employees group by department_id;
+40. select last_name,salary from employees where salary>(Select salary from employees where last_name='Abel');
+
+41. select last_name, job_id, salary from employees where job_id=(select job_id from employees where last_name='Seo')
+AND salary>(select salary from employees where last_name='Seo');
+42. select last_name,job_id,salary from employees where salary=(Select MIN(salary) from employees);
+
+43. select department_id,MIN(Salary) from employees GROUP BY department_id HAVING MIN(Salary)>
+(select min(salary) from employees where department_id =50);
+
+44. Select employee_id,last_name,job_id,salary FROM employees WHERE salary < ANY
+(Select salary from employees where job_id='IT_PROG') and job_id<>'IT_PROG';
+
+45. Select employee_id,last_name,job_id,salary FROM employees where salary<ALL
+(Select salary from employees where job_id='IT_PROG') AND job_id<>'IT_PROG';
+
